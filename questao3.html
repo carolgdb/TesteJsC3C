@@ -27,8 +27,16 @@ No caso de a nota ser 38, o arredondamento é possível pois atingirá 40 e o al
 
     <script>
         //peço ao usuário que informe a nota do aluno
-        var nota=prompt('Informe a nota do Aluno');
-        nota=parseFloat(nota);
+        loop:
+        while(true){
+            var nota=prompt('Informe a nota do Aluno');
+            nota=parseFloat(nota);
+            if (nota >= 0 && nota <= 100)
+                    break loop;
+                else
+                    alert("Por favor, informe uma nota de 0 a 100");
+
+        }
 
         
         var result = avaliaNota(nota);

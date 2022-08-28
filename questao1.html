@@ -1,0 +1,50 @@
+<!--Crie um código JS que receba os comprimentos dos lados de um triângulo através de inputs e retorne sua classificação quanto ao tamanho de seus lados.-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carolina">
+    <meta name="description" content="descrição bacana">
+    <meta name="keywords" content="tecnologia, html5, javascript">
+    <title>Teste javascript</title>
+</head>
+<body>
+    <h1>Questão 01 - 3 Tipos de Triângulo</h1>
+       
+    <div id="output"></div>
+
+    <script>
+        /*peço ao usuário que informe os lados do triangulo*/
+        var l1=prompt('Digite o primeiro lado do triângulo');
+        l1=parseFloat(l1);
+        var l2=prompt('Digite o segundo lado do triângulo');
+        l2=parseFloat(l2);
+        var l3=prompt('Digite o terceiro lado do triângulo');
+        l3=parseFloat(l3);
+        var result = identificaTipoTriangulo(l1,l2,l3);
+        imprime(result);
+           
+        function identificaTipoTriangulo(l1,l2,l3) 
+        {
+            var resultado;
+            if (l1 == l2 && l2 == l3){
+                resultado = 'O triângulo é Equilátero';
+            }else if (l1 == l2 || l1 == l3 || l2 == l3){
+                resultado = 'O triângulo é Isósceles';
+            }else{
+                resultado ='O triângulo é Escaleno';
+            }
+            return resultado;
+        }
+
+        function imprime(result)
+        {
+            var output=document.querySelector('#output');
+            output.innerHTML=result;
+        }
+    </script>
+</body>
+</html>

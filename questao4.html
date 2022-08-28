@@ -1,0 +1,58 @@
+<!--Criar um método que irá receber um valor inteiro como argumento e retornar um array com uma contagem até o argumento como limite.
+
+Quando o número for divisível por 5, deve-se substituir o número pela String “ Luidy” e caso o número seja divisível por 9, deve-se substituir o número por  “Moura”.
+Se o número for divisível por ambos deve-se colocar “LuidyMoura”.
+
+Exemplo de retorno:
+
+Entrada:
+45
+
+Saída:
+1, 2, 3, 4, Luidy, 6, 7, 8, Moura, Luidy, 11, 12, 13, 14, Luidy, 16, 17, Moura, 19, Luidy, 21, 22, 23, 24, Luidy, 26, Moura, 28, 29, Luidy, 31, 32, 33, 34, Luidy, Moura, 37, 38, 39, Luidy, 41, 42, 43, 44, LuidyMoura.-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carolina">
+    <meta name="description" content="descrição bacana">
+    <meta name="keywords" content="tecnologia, html5, javascript">
+    <title>LuidyMoura</title>
+</head>
+<body>
+    <h1>Questão 04 - LuidyMoura</h1>
+       
+    <section id="mensagem">
+       
+    </section>
+
+    <script>
+        //peço ao usuário que informe o limite para a funcao
+        var numerolimite=prompt('Informe o limite da função LuidyMoura');
+        numerolimite=parseFloat(numerolimite);
+        luidyMoura(numerolimite);
+        
+        function luidyMoura(numerolimite)
+        {
+            
+            let msg=document.querySelector('section#mensagem')
+            for (let numero=1; numero<=numerolimite; numero++)  
+            {
+                var divisivelpor5 = Boolean(numero % 5 == 0)
+                var divisivelpor9 = Boolean(numero % 9 == 0)
+                var resultado = `<p>${numero}</p>`;
+                if(divisivelpor5 && divisivelpor9)
+                    resultado= `<p>LuidyMoura</p>`;
+                else if (divisivelpor5)
+                    resultado= `<p>Luidy</p>`;
+                else if (divisivelpor9)
+                    resultado= `<p>Moura</p>`;
+                msg.innerHTML+= resultado;
+            }
+        }
+    </script>
+</body>
+</html>

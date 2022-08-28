@@ -1,0 +1,61 @@
+<!--Uma das vantagens da programação é a automatização de tarefas que não gostamos de realizar. Dito isto, elabore um método em JS cujo objetivo é resolver a fórmula de Bhaskara. 
+
+Para isso, sua função deve receber três parâmetros, “ax2”, “bx” e “c”, de tal modo que na equação: 3x² - 5x + 12 os valores seriam respectivamente: 3, -5, 12. 
+
+Como retorno deve ser passado um vetor que tem 2 valores um para cada possível resultado, mesmo que os resultados sejam iguais.
+
+Caso o delta seja negativo, retorne, ao invés do vetor, um string com a frase: “Delta é negativo”.-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carolina">
+    <meta name="description" content="descrição bacana">
+    <meta name="keywords" content="tecnologia, html5, javascript">
+    <title>Teste de javascript</title>
+</head>
+<body>
+    <h1>Questão 02 - Bhaskara</h1>
+       
+    <div id="output"></div>
+
+    <script>
+        /*Peço ao usuário que digite os valores de a, b e c da equação.*/
+        var a=prompt('Digite o valor para a');
+        a=parseFloat(a);
+        var b=prompt('Digite o valor para b');
+        b=parseFloat(b);
+        var c=prompt('Digite o valor para c');
+        c=parseFloat(c);
+        var result = calculaBhaskara(a,b,c);
+        escreve(result);
+        
+        function calculaBhaskara(a,b,c) {
+
+            var raizes = {};
+            //verifica valor de delta
+            delta = b * b - 4 * a * c;
+
+            if (delta < 0) {
+                return ("Delta é negativo");
+            } else {
+                raizes.resultado1 = (-b + Math.sqrt(delta)) / (2 * a);
+                raizes.resultado2 = (-b - Math.sqrt(delta)) / (2 * a);
+                return raizes;
+            }
+        }
+       
+        function escreve(result)
+        {
+            var output=document.querySelector('#output');
+            if(result == "Delta é negativo" )
+                output.innerHTML=result;
+            else
+                output.innerHTML=`As raízes são" ${result.resultado1} e ${result.resultado2}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!--Construa um código JS que receba uma valor através de um input para um sistema de notas de uma instituição que possui a seguinte política de classificação: 
+
+* Todo aluno recebe uma nota de 0 a 100. 
+* Alunos com nota abaixo de 40 são reprovados. 
+* As notas possuem a seguinte regra de arredondamento: 
+	* Se a diferença entre a nota e o próximo múltiplo de 5 for menor que 3, arredondar a nota para esse próximo múltiplo de 5. 
+	* Se a nota for abaixo de 38, não é feito nenhum arredondamento pois esta nota resulta na reprovação do aluno. 
+
+Por exemplo, a nota 84 será arredondada para 85, mas a nota 29 não será arredondada por ser abaixo de 40 e não ser possível arredondamento eficiente, ou seja, que evite a reprovação do aluno. 
+No caso de a nota ser 38, o arredondamento é possível pois atingirá 40 e o aluno será aprovado.-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carolina">
+    <meta name="description" content="descrição bacana">
+    <meta name="keywords" content="tecnologia, html5, javascript">
+    <title>Sistema de Notas</title>
+</head>
+<body>
+    <h1>Questão 03 - Sistema de Notas</h1>
+       
+    <div id="output"></div>
+
+    <script>
+        //peço ao usuário que informe a nota do aluno
+        var nota=prompt('Informe a nota do Aluno');
+        nota=parseFloat(nota);
+
+        
+        var result = avaliaNota(nota);
+        escreve(result);
+        
+        
+        function avaliaNota(nota)
+        {
+            var arredondado = arredondaNota(nota);
+            var resultado = {};
+            resultado.aprovacao = "REPROVADO";
+            resultado.notafinal = arredondado;
+            
+            if (nota >= 40)
+                resultado.aprovacao = "APROVADO";
+            return resultado;
+        }
+        
+        function arredondaNota(nota)
+        {
+            if(nota>=38)
+            {
+                //pega o resto da divisao por 10 e obtem a unidade
+                var unidade = nota % 10;
+                //subtrai a unidade obtida para encontrar a dezena
+                var dezena = (nota - unidade)/10 ;
+                //unidades 8 e 9 devem ser arredondadas para proxima dezena                
+                if (10-unidade < 3)
+                    nota = (dezena+1)*10;
+                // unidades 3 e 4 dever ser arredondadas para 5
+                else if (5-unidade < 3 && 5-unidade > 0)
+                    nota = dezena*10 + 5;
+            }
+            return nota;
+        }
+        function escreve(result)
+        {
+            var output=document.querySelector('#output');
+            output.innerHTML=`A nota do aluno é ${result.notafinal} e ele foi ${result.aprovacao}`;
+               
+        }
+    </script>
+</body>
+</html>
